@@ -102,7 +102,7 @@ useEffect(() => {
                 <div style={{display: 'flex' , justifyContent:'space-between'}}>
                     <Button type="submit" color="primary" variant="contained">بعدی</Button>
                     <Link to='/cart'>
-                    <Button variant="outlined" to="/cart" component={Link}>بازگشت به پروفایل</Button>
+                    <Button variant="outlined">بازگشت به پروفایل</Button>
                     </Link>
                 </div>
     </form>
