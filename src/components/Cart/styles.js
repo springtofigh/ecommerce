@@ -8,14 +8,19 @@ export default makeStyles((theme) => ({
   emptyButton: {
     minWidth: '150px',
     [theme.breakpoints.down('xs')]: {
-      marginBottom: '5px',
+      marginRight: '20px',
     },
     [theme.breakpoints.up('xs')]: {
-      marginRight: '20px',
+      marginBottom: '5px',
+      marginLeft: '20px',
+      marginRight: '10px',
     },
   },
   checkoutButton: {
     minWidth: '150px',
+    marginBottom: '5px',
+    marginLeft: '20px',
+    marginRight: '10px',
   },
   link: {
     textDecoration: 'none',

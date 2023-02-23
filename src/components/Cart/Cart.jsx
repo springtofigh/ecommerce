@@ -29,7 +29,7 @@ const Cart = ({ cart , handleEmptyCart , handleUpdateCartQuantity , handleRemove
         </Grid>
         <div className={classes.cardDetails}>
         <Typography variant="h4">
-            Total price: {cart.subtotal.formatted_with_symbol}
+            قیمت نهایی: {cart.subtotal.formatted_with_symbol}
         </Typography>
         <div>
             <Button component={Link} to="/checkout" className={classes.checkoutButton} size="large" type="button" variant="contained" color="primary">پرداخت</Button>
