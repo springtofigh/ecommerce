@@ -115,7 +115,7 @@ import FormInput from './Forminput';
 
 // export default AddressForm
 
-const AddressForm = ({ ckeckoutToken }) => {
+const AddressForm = ({ckeckoutToken , next}) => {
     const [shippingCountries , setShippingCountries] = useState([]);
     const [shippingCountry , setShippingCountry] = useState('');
     const [shippingSubdevisions , setShippingSubdevisions] = useState([]);
@@ -126,9 +126,9 @@ const AddressForm = ({ ckeckoutToken }) => {
 
     const countries = Object.entries(shippingCountries).map(([code , name]) => ({id: code , label: name}));
     const subdivisions = Object.entries(shippingSubdevisions).map(([code , name]) => ({id: code , label: name}));
-//   const options = shippingOptions.map(shippingOption => ({id: shippingOption.id , label: `${shippingOption.description} - (${shippingOption.price.formatted_with_symbol})`}))
-//   console.log(shippingOptions)
-    console.log(countries);
+    const options = shippingOptions.map(shippingOption => ({id: shippingOption.id , label: `${shippingOption.description} - (${shippingOption.price.formatted_with_symbol})`}))
+    //console.log(shippingOptions)
+    // console.log(countries);
 
       // FETCHING SHIPING COUNTRIES 
     const fetchShippingCountries = async (checkoutTokenId) => {
@@ -144,11 +144,11 @@ const fetchSubdivision = async (countryCode) => {
     setShippingSubdevision(Object.keys(subdivisions)[0]);
 }
 
-// const fetchShippingOptions = async (checkoutTokenId , country , region = null) => {
-//   const options  = await commerce.checkout.getShippingOptions(checkoutTokenId , {country , region });
-//   setShippingOptions(options);
-//   setShippingOption(options[0].id);
-// }
+const fetchShippingOptions = async (checkoutTokenId , country , region = null) => {
+  const options  = await commerce.checkout.getShippingOptions(checkoutTokenId , {country , region });
+  setShippingOptions(options);
+  setShippingOption(options[0].id);
+}
 
 useEffect(() => {
     fetchShippingCountries(ckeckoutToken.id)
@@ -158,15 +158,15 @@ useEffect(() => {
     if(shippingCountry) fetchSubdivision(shippingCountry)
 } , [shippingCountry]);
 
-// useEffect(() => {
-//   if(shippingSubdevisions) fetchShippingOptions(ckeckoutToken.id , shippingCountry , shippingSubdevision)
-// } , [shippingSubdevision]);
+useEffect(() => {
+    if(shippingSubdevisions) fetchShippingOptions(ckeckoutToken.id , shippingCountry , shippingSubdevision)
+} , [shippingSubdevision]);
 
   return (
     <>
         <Typography variant='h6' gutterBottom>آدرس ارسال</Typography>
         <FormProvider {...methods}>
-        <form onSubmit=''>
+        <form onSubmit={methods.handleSubmit((data) => next({...data , shippingCountry , shippingSubdevision , shippingOption}))}>
         <Grid container spacing={3}>
                 <FormInput required name='firstName' label='نام' />
                 <FormInput required name='lastName'  label='نام خانوادگی'/>
@@ -194,15 +194,22 @@ useEffect(() => {
                             ))}
                         </Select>
                 </Grid>
-                {/*<Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={6}>
                 <InputLabel>گزینه های ارسال</InputLabel>
-                <Select value={} fullWidth onChange={}>
-                    <MenuItem key={} value={}>
-                    ME
-                    </MenuItem>
-                </Select>
-                </Grid> */}
+                        <Select value={shippingOption} fullWidth onChange={e => setShippingOption(e.target.value)}>
+                        {options.map((option) => (
+                                <MenuItem key={option.id} value={option.id}>
+                                {option.label}
+                            </MenuItem>
+                            ))}
+                        </Select>
+                </Grid>
         </Grid>
+            <br/>
+                <div style={{display: 'flex' , justifyContent:'space-between'}}>
+                    <Button type="submit" color="primary" variant="contained">بعدی</Button>
+                    <Button component={Link} to='/cart' variant="outlined">بازگشت به پروفایل</Button>
+                </div>
         </form>
         </FormProvider>
     </>

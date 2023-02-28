@@ -86,6 +86,8 @@ const steps = ['آدرس ارسال' , 'اطلاعات پرداخت'];
 const Checkout = ({ cart }) => {
     const [activeStep , setActiveStep] = useState(0);
     const [ckeckoutToken , setCheckoutToken] = useState(null);
+    const [shippingData , setShippingData] = useState({});
+
     const classes = useStyles();
 
     //Generating Token
@@ -102,6 +104,15 @@ const Checkout = ({ cart }) => {
       generateToken();
     } , [cart]);
 
+    // CHANGE STEP
+    const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+
+    const next = (data) => {
+        setShippingData(data);
+        nextStep();
+    }
+
         // CONFIRMATION COMPONENT
         const Confirmation = () => (
             <>
@@ -113,8 +124,8 @@ const Checkout = ({ cart }) => {
         )
         
             const Form = () => activeStep === 0 ? 
-            <AddressForm ckeckoutToken={ckeckoutToken} /> :
-            <PaymentForm />
+            <AddressForm ckeckoutToken={ckeckoutToken} next={next}/> :
+            <PaymentForm shippingData={shippingData} ckeckoutToken={ckeckoutToken}/>
     
   return (
     <>

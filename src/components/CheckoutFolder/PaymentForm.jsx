@@ -23,9 +23,11 @@ const stripePromis = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 // export default PaymentForm
 
 
-const PaymentForm = () => {
+const PaymentForm = ({ ckeckoutToken }) => {
   return (
-    <div>PaymentForm</div>
+    <>
+    <Review ckeckoutToken={ckeckoutToken}/>
+    </>
   )
 }
 
