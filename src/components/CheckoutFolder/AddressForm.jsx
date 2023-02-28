@@ -125,6 +125,9 @@ const AddressForm = ({ ckeckoutToken }) => {
     const methods = useForm();
 
     const countries = Object.entries(shippingCountries).map(([code , name]) => ({id: code , label: name}));
+    const subdivisions = Object.entries(shippingSubdevisions).map(([code , name]) => ({id: code , label: name}));
+//   const options = shippingOptions.map(shippingOption => ({id: shippingOption.id , label: `${shippingOption.description} - (${shippingOption.price.formatted_with_symbol})`}))
+//   console.log(shippingOptions)
     console.log(countries);
 
       // FETCHING SHIPING COUNTRIES 
@@ -135,10 +138,29 @@ const AddressForm = ({ ckeckoutToken }) => {
     // console.log(countries);
 }
 
+const fetchSubdivision = async (countryCode) => {
+    const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
+    setShippingSubdevisions(subdivisions);
+    setShippingSubdevision(Object.keys(subdivisions)[0]);
+}
+
+// const fetchShippingOptions = async (checkoutTokenId , country , region = null) => {
+//   const options  = await commerce.checkout.getShippingOptions(checkoutTokenId , {country , region });
+//   setShippingOptions(options);
+//   setShippingOption(options[0].id);
+// }
 
 useEffect(() => {
-  fetchShippingCountries(ckeckoutToken.id)
+    fetchShippingCountries(ckeckoutToken.id)
 } , []);
+
+useEffect(() => {
+    if(shippingCountry) fetchSubdivision(shippingCountry)
+} , [shippingCountry]);
+
+// useEffect(() => {
+//   if(shippingSubdevisions) fetchShippingOptions(ckeckoutToken.id , shippingCountry , shippingSubdevision)
+// } , [shippingSubdevision]);
 
   return (
     <>
@@ -162,15 +184,17 @@ useEffect(() => {
                         ))}
                 </Select>
                 </Grid>
-                {/*<Grid item xs={12} sm={6}>
-                <InputLabel>شهرها</InputLabel>
-                <Select value={} fullWidth onChange={}>
-                    <MenuItem key={} value={}>
-                    ME
-                    </MenuItem>
-                </Select>
-                </Grid>
                 <Grid item xs={12} sm={6}>
+                <InputLabel>شهرها</InputLabel>
+                <Select value={shippingSubdevision} fullWidth onChange={e => setShippingSubdevision(e.target.value)}>
+                            {subdivisions.map((subdivision) => (
+                                <MenuItem key={subdivision.id} value={subdivision.id}>
+                                {subdivision.label}
+                            </MenuItem>
+                            ))}
+                        </Select>
+                </Grid>
+                {/*<Grid item xs={12} sm={6}>
                 <InputLabel>گزینه های ارسال</InputLabel>
                 <Select value={} fullWidth onChange={}>
                     <MenuItem key={} value={}>
