@@ -21,3 +21,12 @@ const stripePromis = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 // }
 
 // export default PaymentForm
+
+
+const PaymentForm = () => {
+  return (
+    <div>PaymentForm</div>
+  )
+}
+
+export default PaymentForm

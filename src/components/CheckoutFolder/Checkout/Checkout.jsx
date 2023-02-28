@@ -79,3 +79,49 @@ import PaymentForm from '../PaymentForm';
 // }
 
 // export default Checkout
+
+const steps = ['آدرس ارسال' , 'اطلاعات پرداخت'];
+
+
+const Checkout = () => {
+    const [activeStep , setActiveStep] = useState(0);
+    const classes = useStyles();
+
+        // CONFIRMATION COMPONENT
+        const Confirmation = () => (
+            <>
+            <div>
+                تاییدیه
+            </div>
+            </>
+            
+        )
+        
+            const Form = () => activeStep === 0 ? 
+            <AddressForm /> :
+            <PaymentForm />
+    
+  return (
+    <>
+    <div className={classes.toolbar} />
+    <main className={classes.layout}>
+    <Paper className={classes.paper}>
+    <Typography variant="h4" align="center">پرداخت</Typography>
+            <Stepper activeStep={activeStep} className={classes.stepper}>
+               {steps.map((step) => (
+                   <Step key={step}>
+                    <StepLabel>
+                            {step}
+                    </StepLabel>
+                   </Step>
+                ))}
+            </Stepper>
+              {/* LAST STEP  */}
+            {activeStep === steps.length ? <Confirmation /> : <Form/>}
+    </Paper>
+    </main>
+    </>
+  )
+}
+
+export default Checkout;

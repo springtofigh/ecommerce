@@ -42,6 +42,7 @@ import useStyles from './styles';
 
 const Navbar = ({totalItems}) => {
     const classes = useStyles();
+    const location = useLocation();
   return (
     <div>
         <AppBar>
@@ -51,14 +52,16 @@ const Navbar = ({totalItems}) => {
                     بی شاپ
                 </Typography>
                 <div className={classes.grow}/>
-                <div className={classes.button}>
-                    <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                         {/* <Badge badgeContent={2} overlap="rectangular" color="secondary"> */}
+                        {location.pathname === '/' && (
+                    <div className={classes.button}>
+                        <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                         <Badge badgeContent={totalItems} overlap="rectangular" color="secondary">
                         <ShoppingCart/>
                         </Badge>
-                    </IconButton>
-                </div>
+                        </IconButton>
+                    </div>
+                )}
             </Toolbar>
         </AppBar>
     </div>
