@@ -115,7 +115,7 @@ import FormInput from './Forminput';
 
 // export default AddressForm
 
-const AddressForm = () => {
+const AddressForm = ({ ckeckoutToken }) => {
     const [shippingCountries , setShippingCountries] = useState([]);
     const [shippingCountry , setShippingCountry] = useState('');
     const [shippingSubdevisions , setShippingSubdevisions] = useState([]);
@@ -123,6 +123,23 @@ const AddressForm = () => {
     const [shippingOptions , setShippingOptions] = useState([]);
     const [shippingOption , setShippingOption] = useState('');
     const methods = useForm();
+
+    const countries = Object.entries(shippingCountries).map(([code , name]) => ({id: code , label: name}));
+    console.log(countries);
+
+      // FETCHING SHIPING COUNTRIES 
+    const fetchShippingCountries = async (checkoutTokenId) => {
+    const { countries } = await commerce.services.localeListShippingCountries(checkoutTokenId);
+    setShippingCountries(countries)
+    setShippingCountry(Object.keys(countries)[0])
+    // console.log(countries);
+}
+
+
+useEffect(() => {
+  fetchShippingCountries(ckeckoutToken.id)
+} , []);
+
   return (
     <>
         <Typography variant='h6' gutterBottom>آدرس ارسال</Typography>
@@ -137,13 +154,15 @@ const AddressForm = () => {
                 <FormInput required name='zip' label='کدپستی'/>
                 <Grid item xs={12} sm={6}>
                 <InputLabel>کشور</InputLabel>
-                <Select value={} fullWidth onChange={}>
-                    <MenuItem key={} value={}>
-                    ME
-                    </MenuItem>
+                <Select value={shippingCountry} fullWidth onChange={e => setShippingCountry(e.target.value)}>
+                    {countries.map((country) => (
+                        <MenuItem key={country.id} value={country.id}>
+                            {country.label}
+                        </MenuItem>
+                        ))}
                 </Select>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/*<Grid item xs={12} sm={6}>
                 <InputLabel>شهرها</InputLabel>
                 <Select value={} fullWidth onChange={}>
                     <MenuItem key={} value={}>
@@ -158,7 +177,7 @@ const AddressForm = () => {
                     ME
                     </MenuItem>
                 </Select>
-                </Grid>
+                </Grid> */}
         </Grid>
         </form>
         </FormProvider>

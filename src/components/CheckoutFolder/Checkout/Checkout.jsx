@@ -83,9 +83,24 @@ import PaymentForm from '../PaymentForm';
 const steps = ['آدرس ارسال' , 'اطلاعات پرداخت'];
 
 
-const Checkout = () => {
+const Checkout = ({ cart }) => {
     const [activeStep , setActiveStep] = useState(0);
+    const [ckeckoutToken , setCheckoutToken] = useState(null);
     const classes = useStyles();
+
+    //Generating Token
+    useEffect(() => {
+      const generateToken = async () => {
+        try {
+          const token = await commerce.checkout.generateToken(cart.id, {type: 'cart'});
+          console.log(token);
+          setCheckoutToken(token)
+        } catch (error) {
+          
+        }
+      }
+      generateToken();
+    } , [cart]);
 
         // CONFIRMATION COMPONENT
         const Confirmation = () => (
@@ -98,7 +113,7 @@ const Checkout = () => {
         )
         
             const Form = () => activeStep === 0 ? 
-            <AddressForm /> :
+            <AddressForm ckeckoutToken={ckeckoutToken} /> :
             <PaymentForm />
     
   return (
@@ -117,7 +132,7 @@ const Checkout = () => {
                 ))}
             </Stepper>
               {/* LAST STEP  */}
-            {activeStep === steps.length ? <Confirmation /> : <Form/>}
+            {activeStep === steps.length ? <Confirmation /> : ckeckoutToken && <Form/>}
     </Paper>
     </main>
     </>
