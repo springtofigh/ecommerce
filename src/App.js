@@ -32,28 +32,27 @@ const App = () => {
       // ADD PRODUCTS TO CART
       
       const handleAddToCart = async (productId , quantity) => {
-        const  response  = await commerce.cart.add(productId , quantity);
+        const  item  = await commerce.cart.add(productId , quantity);
       
-        setCart(response.cart)
-      
+        setCart(item)
       }
 
       // UPDATE QUANITY FOR EACH PRODUCT
       const handleUpdateCartQuantity = async (productId , quantity ) => {
-        const response = await commerce.cart.update(productId , {quantity});
-        setCart(response.cart)
+        const item = await commerce.cart.update(productId , {quantity});
+        setCart(item)
       }
 
       // REMOVE PRODUCT FORM CART
       const handleRemoveFromCart = async (productId) => {
-        const response = await commerce.cart.remove(productId);
-        setCart(response.cart)
+        const item = await commerce.cart.remove(productId);
+        setCart(item)
       }
 
       // FULL EMPTY CART
       const handleEmptyCart = async () => {
-        const response = await commerce.cart.empty();
-        setCart(response.cart)
+        const item = await commerce.cart.empty();
+        setCart(item)
       }
 
       useEffect(() => {
