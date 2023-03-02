@@ -16,6 +16,8 @@ import Checkout from "./components/CheckoutFolder/Checkout/Checkout";
 const App = () => {
     const [products , setProducts] = useState([]);
     const [cart , setCart] = useState({});
+    const [order , setOrder] = useState({});
+    const [errorMsg, setErrorMsg] = useState('');
 
     // GET ANG SHOW PRODUCTS
     const fetchProducts = async () => {
@@ -55,6 +57,23 @@ const App = () => {
         setCart(item)
       }
 
+      // MAKE CART EMTY AFTER PAYMENT
+      const refreshCart = async () => {
+        const newCart = await commerce.cart.refresh();
+        setCart(newCart)
+      }
+
+      // 
+      const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+        try {
+          const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+          setOrder(incomingOrder);
+          refreshCart();
+        } catch (error) {
+          setErrorMsg(error.data.error.message)
+        }
+      };
+
       useEffect(() => {
         fetchProducts();
         fetchCart();
@@ -69,7 +88,7 @@ const App = () => {
       <Routes>
       <Route path="/" element={<Products products={products} onAddToCart={handleAddToCart} cart={cart}/>}/>
           <Route path="/cart" element={<Cart cart={cart}  handleEmptyCart={handleEmptyCart}  handleRemoveFromCart={handleRemoveFromCart}  handleUpdateCartQuantity={handleUpdateCartQuantity}/>}/>
-          <Route path="/checkout" element={<Checkout cart={cart} />}/>
+          <Route path="/checkout" element={<Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMsg} />}/>
       </Routes>
 
 

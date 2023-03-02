@@ -115,7 +115,7 @@ import FormInput from './Forminput';
 
 // export default AddressForm
 
-const AddressForm = ({ckeckoutToken , next}) => {
+const AddressForm = ({checkoutToken , next}) => {
     const [shippingCountries , setShippingCountries] = useState([]);
     const [shippingCountry , setShippingCountry] = useState('');
     const [shippingSubdevisions , setShippingSubdevisions] = useState([]);
@@ -151,7 +151,7 @@ const fetchShippingOptions = async (checkoutTokenId , country , region = null) =
 }
 
 useEffect(() => {
-    fetchShippingCountries(ckeckoutToken.id)
+    fetchShippingCountries(checkoutToken.id)
 } , []);
 
 useEffect(() => {
@@ -159,7 +159,7 @@ useEffect(() => {
 } , [shippingCountry]);
 
 useEffect(() => {
-    if(shippingSubdevisions) fetchShippingOptions(ckeckoutToken.id , shippingCountry , shippingSubdevision)
+    if(shippingSubdevisions) fetchShippingOptions(checkoutToken.id , shippingCountry , shippingSubdevision)
 } , [shippingSubdevision]);
 
   return (

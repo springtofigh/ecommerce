@@ -83,9 +83,9 @@ import PaymentForm from '../PaymentForm';
 const steps = ['آدرس ارسال' , 'اطلاعات پرداخت'];
 
 
-const Checkout = ({ cart }) => {
+const Checkout = ({ cart , order , onCaptureCheckout ,error }) => {
     const [activeStep , setActiveStep] = useState(0);
-    const [ckeckoutToken , setCheckoutToken] = useState(null);
+    const [checkoutToken , setCheckoutToken] = useState(null);
     const [shippingData , setShippingData] = useState({});
 
     const classes = useStyles();
@@ -124,8 +124,8 @@ const Checkout = ({ cart }) => {
         )
         
             const Form = () => activeStep === 0 ? 
-            <AddressForm ckeckoutToken={ckeckoutToken} next={next}/> :
-            <PaymentForm shippingData={shippingData} ckeckoutToken={ckeckoutToken}/>
+            <AddressForm checkoutToken={checkoutToken} next={next}/> :
+            <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} onCaptureCheckout={onCaptureCheckout}/>
     
   return (
     <>
@@ -143,7 +143,7 @@ const Checkout = ({ cart }) => {
                 ))}
             </Stepper>
               {/* LAST STEP  */}
-            {activeStep === steps.length ? <Confirmation /> : ckeckoutToken && <Form/>}
+            {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form/>}
     </Paper>
     </main>
     </>
