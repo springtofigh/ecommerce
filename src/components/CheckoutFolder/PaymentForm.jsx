@@ -10,19 +10,6 @@ import Review from './Review';
 // API
 const stripePromis = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-// const PaymentForm = ({ checkoutToken , shippingData, backStep , onCapturedCheckout , nextStep }) => {
-//   return (
-//     <>
-//       <Review ckeckoutToken={checkoutToken}/>
-//       <Divider/>
-//       <Typography variant='h6' gutterBottom style={{margin: '20px 0'}}>روشهای پرداخت</Typography>
-//     </>
-//   )
-// }
-
-// export default PaymentForm
-
-
 const PaymentForm = ({ checkoutToken , backStep , shippingData , nextStep , onCaptureCheckout }) => {
   const handleSubmit = async (event,elements,stripe) =>  {
     event.preventDefault();

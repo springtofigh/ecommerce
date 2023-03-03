@@ -22,4 +22,4 @@ const Forminput = ( { name, label, required } ) => {
   )
 }
 
-export default Forminput
+export default Forminput;
