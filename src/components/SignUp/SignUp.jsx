@@ -2,16 +2,22 @@ import React from "react";
 import { Button, TextField , Box , Typography , Grid } from "@material-ui/core";
 import {useForm} from "react-hook-form";
 
+// LOGO
+import Bee from '../../assets/signin-logo.jpg';
+
 const SignUp = () => {
   const { register , handleSubmit , formState: { errors } } = useForm();
   const onSubmit = (data) => console.log(data);
   return (
     <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }}>
       <Grid item>
-        <Box mb={5}>
+        <Box mb={3}>
         <Typography>
         به فروشگاه زنبور خوش آمدید
       </Typography>
+        </Box>
+        <Box mb={3}>
+          <img src={Bee} alt="Bee Shop" height="200px"/>
         </Box>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box mb={2}>
