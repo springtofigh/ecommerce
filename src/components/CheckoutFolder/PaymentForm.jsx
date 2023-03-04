@@ -10,10 +10,11 @@ import Review from './Review';
 // API
 const stripePromis = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ checkoutToken , backStep , nextStep , payTimeout }) => {
+const PaymentForm = ({ checkoutToken , backStep , nextStep , payTimeout , refreshCart }) => {
   const handleSubmit = async (event) =>  {
     event.preventDefault();
       payTimeout();
+      refreshCart();
       nextStep();
     }
 
