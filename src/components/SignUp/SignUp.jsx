@@ -3,7 +3,7 @@ import { Button, TextField , Box , Typography , Grid } from "@material-ui/core";
 import {useForm} from "react-hook-form";
 
 // LOGO
-import Bee from '../../assets/signin-logo.jpg';
+import Bee from '../../assets/signin-logo.png';
 
 const SignUp = () => {
   const { register , handleSubmit , formState: { errors } } = useForm();
