@@ -11,7 +11,7 @@ const Product = ({ product, onAddToCart }) => {
   return (
     <Card className={classes.root}>
         <CardMedia className={classes.media} image={product.image.url} title={product.name}/>
-        <CardContent>
+        <CardContent className={classes.cardHeight}>
             <div className={classes.cardContent}>
                 <Typography variant='h5' gutterBottom>
                 {product.name}

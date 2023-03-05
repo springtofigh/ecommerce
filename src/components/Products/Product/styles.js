@@ -8,6 +8,9 @@ export default makeStyles(() => ({
         height: 0,
         paddingTop: '57%',
     },
+    cardHeight: {
+        height: '100px',
+    },
     cardContent: {
         display:'flex',
         justifyContent:'space-between',
