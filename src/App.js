@@ -73,8 +73,8 @@ const App = () => {
     <div>
       <Navbar totalItems={cart.total_items}/>
       <Routes>
-      <Route path="/" element={<Products products={products} onAddToCart={handleAddToCart} cart={cart}/>}/>
-      <Route path="/signup" element={<SignUp/>}/>
+      <Route path="/" element={<SignUp/>}/>
+      <Route path="/products" element={<Products products={products} onAddToCart={handleAddToCart} cart={cart}/>}/>
       <Route path="/cart" element={<Cart cart={cart}  handleEmptyCart={handleEmptyCart}  handleRemoveFromCart={handleRemoveFromCart}  handleUpdateCartQuantity={handleUpdateCartQuantity}/>}/>
       <Route path="/checkout" element={<Checkout cart={cart} refreshCart={refreshCart}/>}/>
       </Routes>
