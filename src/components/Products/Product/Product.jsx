@@ -13,7 +13,7 @@ const Product = ({ product, onAddToCart }) => {
         <CardMedia className={classes.media} image={product.image.url} title={product.name}/>
         <CardContent className={classes.cardHeight}>
             <div className={classes.cardContent}>
-                <Typography variant='h5' gutterBottom>
+                <Typography variant='h5' style={{ fontSize: '25px' }} gutterBottom>
                 {product.name}
                 </Typography>
                 <Typography variant='h5' >
