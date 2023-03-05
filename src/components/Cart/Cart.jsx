@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 // COMPONENTS
 import CartItem from './CartItem/CartItem';
+import Loading from '../Loading/Loading';
 
 // STYLES
 import useStyles from './styles';
@@ -39,7 +40,7 @@ const Cart = ({ cart , handleEmptyCart , handleUpdateCartQuantity , handleRemove
         </>
     );
 
-    if (!cart.line_items) return 'Loading...';
+    if (!cart.line_items) return <Loading/>;
 
   return (
     <Container>
