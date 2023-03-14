@@ -56,11 +56,11 @@ const Checkout = ({ cart , error , refreshCart }) => {
   let Confirmation = () => finished ? (
     <>
     <div>
-      <Typography variant="h5">بابت خریدت از فروشگاه زنبور ممنونیم؛</Typography>
+      <Typography variant="h5">بابت  خریدت  از  فروشگاه  زنبور  ممنونیم</Typography>
       <Divider className={classes.divider} />
     </div>
     <br />
-    <Button component={Link} variant="outlined" type="button" to="/products">بازگشت به خانه</Button>
+    <Button component={Link} variant="outlined" type="button" to="/">بازگشت به خانه</Button>
   </>
   ) : (
     <div className={classes.spinner}>
@@ -73,7 +73,7 @@ const Checkout = ({ cart , error , refreshCart }) => {
       <>
         <Typography variant="h5">{error}!خطا</Typography>
         <br />
-        <Button component={Link} variant="outlined" type="button" to="/products">بازگشت به خانه</Button>
+        <Button component={Link} variant="outlined" type="button" to="/">بازگشت به خانه</Button>
       </>
     );
   }

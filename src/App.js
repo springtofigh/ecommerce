@@ -9,7 +9,6 @@ import Navbar from "./components/Navbar/Navbar";
 import Products from "./components/Products/Products";
 import Cart from './components/Cart/Cart';
 import Checkout from "./components/CheckoutFolder/Checkout/Checkout";
-import SignUp from "./components/SignUp/SignUp";
 import NotFound from "./components/NotFound/NotFound";
 
 
@@ -74,9 +73,8 @@ const App = () => {
     <div>
       <Navbar totalItems={cart.total_items}/>
       <Routes>
-      <Route path="/" element={<SignUp/>}/>
       <Route path="/*" element={<NotFound/>} />
-      <Route path="/products" element={<Products products={products} onAddToCart={handleAddToCart} cart={cart}/>}/>
+      <Route path="/" element={<Products products={products} onAddToCart={handleAddToCart} cart={cart}/>}/>
       <Route path="/cart" element={<Cart cart={cart}  handleEmptyCart={handleEmptyCart}  handleRemoveFromCart={handleRemoveFromCart}  handleUpdateCartQuantity={handleUpdateCartQuantity}/>}/>
       <Route path="/checkout" element={<Checkout cart={cart} refreshCart={refreshCart}/>}/>
       </Routes>
