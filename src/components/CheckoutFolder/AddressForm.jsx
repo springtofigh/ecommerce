@@ -7,7 +7,12 @@ import { Link } from 'react-router-dom';
 import { commerce } from '../../lib/commerce';
 
 // COMPONENTS
-import FormInput from './Forminput';
+import FirstName from './Details/Firstname';
+import LastName from './Details/Lastname';
+import Address from './Details/Address1';
+import Email from './Details/Email';
+import City from './Details/City';
+import ZipCode from './Details/ZipCode';
 
 const AddressForm = ({checkoutToken , next}) => {
     const [shippingCountries , setShippingCountries] = useState([]);
@@ -62,12 +67,12 @@ useEffect(() => {
         <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => next({...data , shippingCountry , shippingSubdevision , shippingOption}))}>
         <Grid container spacing={3}>
-                <FormInput required name='firstName' label='نام' />
-                <FormInput required name='lastName'  label='نام خانوادگی'/>
-                <FormInput required name='address1' label='آدرس'/>
-                <FormInput required name='email' label='ایمیل'/>
-                <FormInput required name='city' label='شهر'/>
-                <FormInput required name='zip' label='کدپستی'/>
+                <FirstName/>
+                <LastName/>
+                <Address/>
+                <Email/>
+                <City/>
+                <ZipCode/>
                 <Grid item xs={12} sm={6}>
                 <InputLabel>کشور</InputLabel>
                 <Select value={shippingCountry} fullWidth onChange={e => setShippingCountry(e.target.value)}>
@@ -110,4 +115,4 @@ useEffect(() => {
   )
 }
 
-export default AddressForm
+export default AddressForm;
