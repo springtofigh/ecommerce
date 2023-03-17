@@ -61,18 +61,22 @@ useEffect(() => {
     if(shippingSubdevisions) fetchShippingOptions(checkoutToken.id , shippingCountry , shippingSubdevision)
 } , [shippingSubdevision]);
 
+// const onSubmit = (data) => {
+//     console.log(data);
+// }
+
   return (
     <>
         <Typography variant='h6' gutterBottom>آدرس ارسال</Typography>
         <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit((data) => next({...data , shippingCountry , shippingSubdevision , shippingOption}))}>
         <Grid container spacing={3}>
-                <FirstName/>
+                {/*<FirstName/>
                 <LastName/>
                 <Address/>
                 <Email/>
                 <City/>
-                <ZipCode/>
+                <ZipCode/> */}
                 <Grid item xs={12} sm={6}>
                 <InputLabel>کشور</InputLabel>
                 <Select value={shippingCountry} fullWidth onChange={e => setShippingCountry(e.target.value)}>
