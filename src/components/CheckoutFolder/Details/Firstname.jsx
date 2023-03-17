@@ -1,36 +1,26 @@
 import React from 'react';
 import { TextField , Grid } from "@material-ui/core";
-import { useFormContext, Controller } from 'react-hook-form';
-import * as yup from 'yup';
-
-const schema = yup.object({
-  firstName:yup.string().required('لطفا  وارد کنید')
-})
+import { useFormContext } from 'react-hook-form';
 
 const Firstname = () => {
-  // const { control , handleSubmit , erros } = useFormContext({
-  //   validationSchema: schema,
-  // });
-  
-  const { control , erros } = useFormContext({
-    validationSchema: schema,
-  });
+  const { register, formState: { errors } } = useFormContext();
   
     return (
       <Grid item xs={12} sm={6}>
-                    <Controller
-                      name="firstName"
-                      control={control}
-                      defaultValue=""
-                      render={({ field }) => (
-                          <TextField {...field} 
-                          label='نام'
-                          variant="standard"
-                          error={!!erros.firstName}
-                          helperText={erros.firstName?.message}
-                          />
-                    )}
-                  />
+                <TextField
+                        label='نام'
+                        variant="standard"
+                        fullWidth 
+                        autoFocus
+                        autoComplete="name"
+                        {...register("name", {required:"وارد کردن نام اجباری است" , pattern :{
+                          value:/[a-zA-Z\u0600-\u06FF\s]{2,}/,
+                          message: "نام بیش از حد کوتاه است", 
+        },
+      })}
+        error={!!errors?.name}
+        helperText={errors?.name ? errors.name.message : null}
+        />
       </Grid>
     )
 }

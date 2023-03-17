@@ -1,22 +1,25 @@
 import React from 'react';
 import { TextField , Grid } from "@material-ui/core";
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 const Email = () => {
-    const { control } = useFormContext();
-    const isError = false;
-
+  const { register, formState: { errors } } = useFormContext();
   return (
     <Grid item xs={12} sm={6}>
-            <Controller
-                    name='email'
-                    control={control}
-                    defaultValue=""
-                    error={isError}
-                    render={({ field }) => (
-                        <TextField {...field} label='ایمیل' variant="standard" />
-                )}
-            />
+        <TextField
+        variant="standard" 
+        label="ایمیل" 
+        fullWidth 
+        autoFocus
+        autoComplete="email"
+        {...register("email", {required:"وارد کردن ایمیل اجباری است" , pattern :{
+          value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+          message: "آدرس ایمیل غلط است", 
+        },
+      })}
+        error={!!errors?.email}
+        helperText={errors?.email ? errors.email.message : null}
+        />
 </Grid>
   )
 }

@@ -1,22 +1,29 @@
 import React from 'react';
 import { TextField , Grid } from "@material-ui/core";
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 const City = () => {
-    const { control } = useFormContext();
-    const isError = false;
+  const { register, formState: { errors } } = useFormContext();
 
   return (
     <Grid item xs={12} sm={6}>
-    <Controller
-        name='city'
-        control={control}
-        defaultValue=""
-        error={isError}
-        render={({ field }) => (
-            <TextField {...field} label='شهر' variant="standard" />
-        )}
-/>
+      <TextField
+                        label='شهر'
+                        InputLabelProps={{
+                          style: {direction: 'rtl'}
+                        }}
+                        variant="standard"
+                        fullWidth 
+                        autoFocus
+                        autoComplete="city"
+                        {...register("city", {required:"وارد کردن نام شهر اجباری است" , pattern :{
+                          value:/[a-zA-Z\u0600-\u06FF\s]{3,20}/,
+                          message: "لطفا شهر را درست وارد کنید", 
+        },
+      })}
+        error={!!errors?.city}
+        helperText={errors?.city ? errors.city.message : null}
+        />
   </Grid>
   )
 }

@@ -1,22 +1,29 @@
 import React from 'react';
 import { TextField , Grid } from "@material-ui/core";
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 const ZipCode = () => {
-    const { control } = useFormContext();
-    const isError = false;
+  const { register, formState: { errors } } = useFormContext();
 
   return (
     <Grid item xs={12} sm={6}>
-    <Controller
-        name='zip'
-        control={control}
-        defaultValue=""
-        error={isError}
-        render={({ field }) => (
-            <TextField {...field} label='کدپستی' variant="standard" />
-        )}
-    />
+            <TextField
+                        label='کدپستی'
+                        InputLabelProps={{
+                          style: {direction: 'rtl'}
+                        }}
+                        variant="standard"
+                        fullWidth 
+                        autoFocus
+                        autoComplete="zip"
+                        {...register("zip", {required:"وارد کردن کدپستی اجباری است" , pattern :{
+                          value:/[0-9]{6,}/,
+                          message: "کد پستی باید شش رقم باشد", 
+        },
+      })}
+        error={!!errors?.zip}
+        helperText={errors?.zip ? errors.zip.message : null}
+        />
   </Grid>
   )
 }
