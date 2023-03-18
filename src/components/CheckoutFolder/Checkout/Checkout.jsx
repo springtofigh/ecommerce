@@ -92,7 +92,7 @@ const Checkout = ({ cart , error , refreshCart }) => {
             <Stepper activeStep={activeStep} className={classes.stepper}>
                {steps.map((step) => (
                    <Step key={step}>
-                    <StepLabel>
+                    <StepLabel StepIconProps={{ classes: { root: classes.icon } }}>
                             {step}
                     </StepLabel>
                    </Step>

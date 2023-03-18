@@ -16,6 +16,9 @@ export default makeStyles((theme) => ({
       marginRight: 'auto',
     },
   },
+  icon: {
+    margin: '0 0 0 5px',
+  },
   paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
@@ -30,17 +33,9 @@ export default makeStyles((theme) => ({
       padding: theme.spacing(3),
     },
   },
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
+  // stepper: {
+  //   padding: theme.spacing(3, 0, 5),
+  // },
   divider: {
     margin: '20px 0',
   },
