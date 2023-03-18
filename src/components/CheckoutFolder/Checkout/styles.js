@@ -33,9 +33,6 @@ export default makeStyles((theme) => ({
       padding: theme.spacing(3),
     },
   },
-  // stepper: {
-  //   padding: theme.spacing(3, 0, 5),
-  // },
   divider: {
     margin: '20px 0',
   },

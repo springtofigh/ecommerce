@@ -89,7 +89,7 @@ const Checkout = ({ cart , error , refreshCart }) => {
     <main className={classes.layout}>
     <Paper className={classes.paper}>
     <Typography variant="h4" align="center">پرداخت</Typography>
-            <Stepper activeStep={activeStep} className={classes.stepper}>
+            <Stepper activeStep={activeStep}>
                {steps.map((step) => (
                    <Step key={step}>
                     <StepLabel StepIconProps={{ classes: { root: classes.icon } }}>
