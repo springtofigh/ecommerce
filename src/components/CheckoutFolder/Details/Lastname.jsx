@@ -8,10 +8,9 @@ const Lastname = () => {
   return (
     <Grid item xs={12} sm={6}>
                       <TextField
-                        label='نام خانوادگی'
+                        placeholder='نام خانودگی مانند توانا'
                         variant="standard"
                         fullWidth 
-                        autoFocus
                         autoComplete="lastName"
                         {...register("lastName", {required:"وارد کردن نام خانوادگی اجباری است" , pattern :{
                           value:/[a-zA-Z\u0600-\u06FF\s]{3,}/,

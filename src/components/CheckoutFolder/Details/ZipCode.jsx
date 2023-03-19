@@ -8,13 +8,9 @@ const ZipCode = () => {
   return (
     <Grid item xs={12} sm={6}>
             <TextField
-                        label='کدپستی'
-                        InputLabelProps={{
-                          style: {direction: 'rtl'}
-                        }}
+                        placeholder='کدپستی مانند ۱۲۳۴۵۶ '
                         variant="standard"
                         fullWidth 
-                        autoFocus
                         autoComplete="zip"
                         {...register("zip", {required:"وارد کردن کدپستی اجباری است" , pattern :{
                           value:/[0-9]{6,}/,

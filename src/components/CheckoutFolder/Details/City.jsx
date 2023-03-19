@@ -8,13 +8,9 @@ const City = () => {
   return (
     <Grid item xs={12} sm={6}>
       <TextField
-                        label='شهر'
-                        InputLabelProps={{
-                          style: {direction: 'rtl'}
-                        }}
+                        placeholder='شهر مانند تهران'
                         variant="standard"
                         fullWidth 
-                        autoFocus
                         autoComplete="city"
                         {...register("city", {required:"وارد کردن نام شهر اجباری است" , pattern :{
                           value:/[a-zA-Z\u0600-\u06FF\s]{3,20}/,

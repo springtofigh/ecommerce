@@ -8,7 +8,7 @@ const Firstname = () => {
     return (
       <Grid item xs={12} sm={6}>
                 <TextField
-                        label='نام'
+                        placeholder='نام مانند سارا'
                         variant="standard"
                         fullWidth 
                         autoFocus

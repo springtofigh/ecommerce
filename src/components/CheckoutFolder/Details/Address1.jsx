@@ -9,13 +9,9 @@ const Address1 = () => {
   return (
     <Grid item xs={12} sm={6}>
                         <TextField
-                        label='آدرس'
-                        InputLabelProps={{
-                          style: {direction: 'rtl'}
-                        }}
+                        placeholder='آدرس مانند تهران پارک وی'
                         variant="standard"
                         fullWidth 
-                        autoFocus
                         autoComplete="address1"
                         {...register("address1", {required:"وارد کردن آدرس اجباری است" , pattern :{
                           value:/[a-zA-Z\u0600-\u06FF\s]{12,}/,

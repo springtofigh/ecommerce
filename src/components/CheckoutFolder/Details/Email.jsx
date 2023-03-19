@@ -7,10 +7,9 @@ const Email = () => {
   return (
     <Grid item xs={12} sm={6}>
         <TextField
+        placeholder='example@gmail.com'
         variant="standard" 
-        label="ایمیل" 
         fullWidth 
-        autoFocus
         autoComplete="email"
         {...register("email", {required:"وارد کردن ایمیل اجباری است" , pattern :{
           value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,

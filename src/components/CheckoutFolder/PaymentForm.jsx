@@ -11,11 +11,14 @@ import Review from './Review';
 const stripePromis = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({ checkoutToken , backStep , nextStep , payTimeout , refreshCart }) => {
-  const handleSubmit = async (event) =>  {
+  const handleSubmit = async (event , elements, stripe) =>  {
     event.preventDefault();
+
+    if(!stripe || !elements) return;
       payTimeout();
       refreshCart();
       nextStep();
+
     }
 
   return (
