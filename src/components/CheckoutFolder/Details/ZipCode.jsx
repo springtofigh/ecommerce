@@ -13,7 +13,7 @@ const ZipCode = () => {
                         fullWidth 
                         autoComplete="zip"
                         {...register("zip", {required:"وارد کردن کدپستی اجباری است" , pattern :{
-                          value:/[0-9]{6,}/,
+                          value:/^[0-9]{6}$/,
                           message: "کد پستی باید شش رقم باشد", 
         },
       })}
