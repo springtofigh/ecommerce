@@ -1,5 +1,5 @@
 import React,{useState , useEffect} from 'react';
-import { InputLabel , TextField , Select , MenuItem , Button , Grid , Typography} from '@material-ui/core';
+import { InputLabel , FormControl , Select , MenuItem , Button , Grid , Typography} from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -57,9 +57,9 @@ useEffect(() => {
     if(shippingCountry) fetchSubdivision(shippingCountry)
 } , [shippingCountry]);
 
-useEffect(() => {
-    if(shippingSubdevisions) fetchShippingOptions(checkoutToken.id , shippingCountry , shippingSubdevision)
-} , [shippingSubdevision]);
+// useEffect(() => {
+//     if(shippingSubdevisions) fetchShippingOptions(checkoutToken.id , shippingCountry , shippingSubdevision)
+// } , [shippingSubdevision]);
 
 
   return (
@@ -75,17 +75,21 @@ useEffect(() => {
                 <City/>
                 <ZipCode/>
                 <Grid item xs={12} sm={6}>
-                <InputLabel>کشور</InputLabel>
+                <InputLabel>کشور</InputLabel>    
+                <FormControl fullWidth required>
                 <Select value={shippingCountry} fullWidth onChange={e => setShippingCountry(e.target.value)}>
                     {countries.map((country) => (
                         <MenuItem key={country.id} value={country.id}>
                             {country.label}
                         </MenuItem>
                         ))}
+                        
                 </Select>
+                </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                <InputLabel>شهرها</InputLabel>
+                <InputLabel>شهرها</InputLabel>    
+                <FormControl fullWidth required>
                 <Select value={shippingSubdevision} fullWidth onChange={e => setShippingSubdevision(e.target.value)}>
                             {subdivisions.map((subdivision) => (
                                 <MenuItem key={subdivision.id} value={subdivision.id}>
@@ -93,8 +97,10 @@ useEffect(() => {
                             </MenuItem>
                             ))}
                         </Select>
+                </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
+                <FormControl required>
                 <InputLabel>گزینه های ارسال</InputLabel>
                         <Select value={shippingOption} fullWidth onChange={e => setShippingOption(e.target.value)}>
                         {options.map((option) => (
@@ -103,7 +109,8 @@ useEffect(() => {
                             </MenuItem>
                             ))}
                         </Select>
-                </Grid>
+                </FormControl>
+                </Grid> */}
         </Grid>
             <br/>
                 <div style={{display: 'flex' , justifyContent:'space-between'}}>

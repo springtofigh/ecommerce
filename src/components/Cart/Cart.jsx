@@ -15,7 +15,7 @@ const Cart = ({ cart , handleEmptyCart , handleUpdateCartQuantity , handleRemove
 
     const EmptyCart = () => (
         <Typography varient="subtitle1">شما هیچ چیز به سبد خرید خود اضافه نکردید
-        <Link to="/products" className={classes.link}>خرید را ادامه دهید</Link>
+        <Link to="/" className={classes.link}>خرید را ادامه دهید</Link>
         </Typography>
     );
 
