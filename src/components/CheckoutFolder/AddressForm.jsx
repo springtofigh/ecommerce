@@ -57,9 +57,9 @@ useEffect(() => {
     if(shippingCountry) fetchSubdivision(shippingCountry)
 } , [shippingCountry]);
 
-// useEffect(() => {
-//     if(shippingSubdevisions) fetchShippingOptions(checkoutToken.id , shippingCountry , shippingSubdevision)
-// } , [shippingSubdevision]);
+useEffect(() => {
+    if(shippingSubdevisions) fetchShippingOptions(checkoutToken.id , shippingCountry , shippingSubdevision)
+} , [shippingSubdevision]);
 
 
   return (
@@ -99,8 +99,7 @@ useEffect(() => {
                         </Select>
                 </FormControl>
                 </Grid>
-                {/* <Grid item xs={12} sm={6}>
-                <FormControl required>
+                <Grid item xs={12} sm={6}>
                 <InputLabel>گزینه های ارسال</InputLabel>
                         <Select value={shippingOption} fullWidth onChange={e => setShippingOption(e.target.value)}>
                         {options.map((option) => (
@@ -109,8 +108,7 @@ useEffect(() => {
                             </MenuItem>
                             ))}
                         </Select>
-                </FormControl>
-                </Grid> */}
+                </Grid>
         </Grid>
             <br/>
                 <div style={{display: 'flex' , justifyContent:'space-between'}}>

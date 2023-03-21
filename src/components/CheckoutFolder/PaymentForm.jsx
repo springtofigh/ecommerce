@@ -16,17 +16,9 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, payTimeout , refreshCa
 
     if (!stripe || !elements) return;
 
-    const cardElement = elements.getElement(CardElement);
-
-    const { error } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });
-
-    if (error) {
-      console.log('error!', error);
-    } else {
       payTimeout();
       refreshCart();
       nextStep();
-    }
   };
 
   return (
