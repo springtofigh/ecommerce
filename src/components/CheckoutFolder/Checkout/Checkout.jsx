@@ -31,7 +31,7 @@ const Checkout = ({ cart , error , refreshCart }) => {
           console.log(token);
           setCheckoutToken(token)
         } catch (error) {
-          console.log("An error occured");
+          console.log("An Error occured.");
         }
       }
       generateToken();

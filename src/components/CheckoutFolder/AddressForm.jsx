@@ -51,7 +51,7 @@ const fetchShippingOptions = async (checkoutTokenId , country , region = null) =
 
 useEffect(() => {
     fetchShippingCountries(checkoutToken.id)
-} , []);
+} , [checkoutToken.id]);
 
 useEffect(() => {
     if(shippingCountry) fetchSubdivision(shippingCountry)
@@ -59,7 +59,7 @@ useEffect(() => {
 
 useEffect(() => {
     if(shippingSubdevisions) fetchShippingOptions(checkoutToken.id , shippingCountry , shippingSubdevision)
-} , [shippingSubdevision]);
+} , [checkoutToken.id , shippingCountry , shippingSubdevisions, shippingSubdevision]);
 
 
   return (
