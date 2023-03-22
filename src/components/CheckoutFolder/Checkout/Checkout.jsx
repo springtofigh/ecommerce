@@ -1,6 +1,6 @@
 import React, {useState , useEffect} from 'react';
 import { Paper , Stepper , Step , StepLabel , Typography , Divider , Button , CircularProgress , CssBaseline } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link , useLocation } from 'react-router-dom';
 
 // API
 import { commerce } from '../../../lib/commerce';
@@ -22,20 +22,35 @@ const Checkout = ({ cart , error , refreshCart }) => {
     const [finished , setFinished] = useState(false);
 
     const classes = useStyles();
+    const location = useLocation();
 
     //Generating Token
     useEffect(() => {
-      const generateToken = async () => {
-        try {
-          const token = await commerce.checkout.generateToken(cart.id, {type: 'cart'});
+      if (cart.id) {
+        const generateToken = async () => {
+          try {
+            const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
           console.log(token);
           setCheckoutToken(token)
-        } catch (error) {
-          console.log("An Error occured.");
-        }
+          } catch {
+            if (activeStep !== steps.length) location.push('/');
+          }
+        };
+        generateToken();
       }
-      generateToken();
-    } , [cart]);
+    }, [cart , activeStep , location]);
+    // useEffect(() => {
+    //   const generateToken = async () => {
+    //     try {
+    //       const token = await commerce.checkout.generateToken(cart.id, {type: 'cart'});
+    //       console.log(token);
+    //       setCheckoutToken(token)
+    //     } catch (error) {
+    //       console.log("An Error occured.");
+    //     }
+    //   }
+    //   generateToken();
+    // } , [cart]);
 
     // CHANGE STEP
     const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
