@@ -66,8 +66,7 @@ const App = () => {
         fetchCart();
       }, []);
 
-      console.log(products);
-      console.log(cart);
+
 
   return (
     <div>
