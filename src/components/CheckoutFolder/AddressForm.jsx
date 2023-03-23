@@ -88,7 +88,7 @@ useEffect(() => {
                 </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                <InputLabel>شهرها</InputLabel>    
+                <InputLabel>شهر</InputLabel>    
                 <FormControl fullWidth required>
                 <Select value={shippingSubdevision} fullWidth onChange={e => setShippingSubdevision(e.target.value)}>
                             {subdivisions.map((subdivision) => (
@@ -100,7 +100,7 @@ useEffect(() => {
                 </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                <InputLabel>گزینه های ارسال</InputLabel>
+                <InputLabel>هزینه ارسال</InputLabel>
                         <Select value={shippingOption} fullWidth onChange={e => setShippingOption(e.target.value)}>
                         {options.map((option) => (
                                 <MenuItem key={option.id} value={option.id}>
