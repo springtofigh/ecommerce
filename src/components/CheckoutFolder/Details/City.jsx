@@ -19,7 +19,6 @@ const City = () => {
                         placeholder='شهر مانند تهران'
                         variant="standard"
                         fullWidth 
-                        autoComplete="city"
                         {...register("city", {required:"وارد کردن نام شهر اجباری است" , pattern :{
                           value:/[a-zA-Z\u0600-\u06FF\s]{3,20}/,
                           message: "لطفا شهر را درست وارد کنید", 

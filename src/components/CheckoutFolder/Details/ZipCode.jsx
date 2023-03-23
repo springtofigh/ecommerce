@@ -19,14 +19,13 @@ const ZipCode = () => {
                         placeholder='کدپستی مانند ۱۲۳۴۵۶ '
                         variant="standard"
                         fullWidth 
-                        autoComplete="zip"
-                        {...register("zip", {required:"وارد کردن کدپستی اجباری است" , pattern :{
+                        {...register("zipCode", {required:"وارد کردن کدپستی اجباری است" , pattern :{
                           value:/^[0-9]{6}$/,
                           message: "کد پستی باید شش رقم باشد", 
         },
       })}
-        error={!!errors?.zip}
-        helperText={errors?.zip ? errors.zip.message : null}
+        error={!!errors?.zipCode}
+        helperText={errors?.zipCode ? errors.zipCode.message : null}
         FormHelperTextProps={{
           className: classes.helperText
         }}

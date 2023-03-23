@@ -20,14 +20,13 @@ const Address1 = () => {
                         placeholder='آدرس مانند تهران پارک وی'
                         variant="standard"
                         fullWidth 
-                        autoComplete="address1"
-                        {...register("address1", {required:"وارد کردن آدرس اجباری است" , pattern :{
+                        {...register("address", {required:"وارد کردن آدرس اجباری است" , pattern :{
                           value:/[a-zA-Z\u0600-\u06FF\s]{12,}/,
                           message: "لطفا آدرس را دقیق تر وارد کنید", 
         },
       })}
-        error={!!errors?.address1}
-        helperText={errors?.address1 ? errors.address1.message : null}
+        error={!!errors?.address}
+        helperText={errors?.address ? errors.address.message : null}
         FormHelperTextProps={{
           className: classes.helperText
         }}

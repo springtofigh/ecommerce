@@ -19,7 +19,6 @@ const Email = () => {
         placeholder='example@gmail.com'
         variant="standard" 
         fullWidth 
-        autoComplete="email"
         {...register("email", {required:"وارد کردن ایمیل اجباری است" , pattern :{
           value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
           message: "آدرس ایمیل غلط است", 

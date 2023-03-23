@@ -20,7 +20,6 @@ const Firstname = () => {
                         variant="standard"
                         fullWidth 
                         autoFocus
-                        autoComplete="name"
                         {...register("name", {required:"وارد کردن نام اجباری است" , pattern :{
                           value:/[a-zA-Z\u0600-\u06FF\s]{2,}/,
                           message: "نام بیش از حد کوتاه است", 

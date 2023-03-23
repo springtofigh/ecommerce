@@ -19,7 +19,6 @@ const Lastname = () => {
                         placeholder='نام خانودگی مانند توانا'
                         variant="standard"
                         fullWidth 
-                        autoComplete="lastName"
                         {...register("lastName", {required:"وارد کردن نام خانوادگی اجباری است" , pattern :{
                           value:/[a-zA-Z\u0600-\u06FF\s]{3,}/,
                           message: "نام خانوادگی بیش از حد کوتاه است", 
