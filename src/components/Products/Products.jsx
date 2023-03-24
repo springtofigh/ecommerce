@@ -16,7 +16,7 @@ const Products = ({products , onAddToCart }) => {
     <main className={classes.content}>
         <div className={classes.toolbar} />
         {
-            !!products 
+            !products.length 
             ? <Loading/> :
             <Grid container justifyContent="center" spacing={4}>
             {
