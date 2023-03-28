@@ -11,13 +11,11 @@ import useStyles from './styles';
 const Products = ({products , onAddToCart }) => {
     const classes = useStyles();
 
+    if (!products.length) return <Loading/>;
 
   return (
     <main className={classes.content}>
         <div className={classes.toolbar} />
-        {
-            !products.length 
-            ? <Loading/> :
             <Grid container justifyContent="center" spacing={4}>
             {
                 products.map((product) => (
@@ -27,7 +25,6 @@ const Products = ({products , onAddToCart }) => {
                 ))
             }
         </Grid>
-        }
     </main>
   )
 }

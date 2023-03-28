@@ -8,7 +8,7 @@ const Loading = () => {
     <div style={{height: "100vh" , display:"flex", justifyContent:"center" , alignItems:"center" , flexDirection:"column"}}>
         <img src={Spinner} alt="download" />
         <h1>
-            در  حال  دانلود
+            در  حال  دانلود ...
         </h1>
     </div>
   )
